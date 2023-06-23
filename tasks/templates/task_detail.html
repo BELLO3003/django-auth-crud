@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 mt-5 mt-5">
+
+            <h1>Detalles de tareas</h1>
+
+            <h3>{{task.title}}</h3>
+            <p>Descripcion: {{task.description}}</p>
+            <p>Usuario: {{task.user}}</p>
+            <p>Fecha de realización: {{task.datecompleted|date:'M j Y:i'}}</p>
+            <!--#Despliega la fecha en formato M D Y-->
+            <!--p>{{task.important}}</p-->
+            {% if task.important %}
+            <p>Es IMPORTANTE</p>
+            {% else %}
+            <p>De baja prioridad</p>
+            {% endif %}
+            <br>
+
+            <div>
+            {{error}}
+            <p>Actualizar datos:</p>
+            <form method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-primary">
+                    Actualizar
+                </button>
+            </form>
+            <br>
+
+            <form action="{% url 'complete_task' task.id %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-success">
+                    Completada
+                </button>
+            </form>
+            <br>
+
+            <form action="{% url 'delete_task' task.id %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-danger">
+                    Eliminar
+                </button>
+            </form>
+        </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

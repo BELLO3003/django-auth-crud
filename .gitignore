@@ -1,0 +1,4 @@
+#Archivos y configuraciones que no se van a subir a Git
+db.sqlite3
+venv
+__pycache__

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Tareas</h1>
+    {% for task in tasks %}
+    
+    <a href="{% url 'task_detail'  task.id %}"> <!--Link que obtiene el ID de la tarea para pasarlo a la URL y así ver sus detalles-->
+        <h3><li>{{task.title}}</li></h3>
+    </a>
+    {% endfor %}
+{% endblock %}
